@@ -1,0 +1,25 @@
+{
+  "name": "fitfood-webapp",
+  "version": "1.0.0",
+  "description": "Fitfood webapp written in Nuxt.js",
+  "author": "JoeyDeckers",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "test": "jest"
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0",
+    "bootstrap-vue": "^2.0.0",
+    "bootstrap": "^4.1.3"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "vue-jest": "^4.0.0-0"
+  }
+}

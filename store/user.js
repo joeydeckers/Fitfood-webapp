@@ -18,7 +18,7 @@ export const actions = {
         })
         .then((response) => {
             if(process.browser){
-                localStorage.setItem("access_token", response.data.accessToken);
+                localStorage.setItem("access_token_fitfood", response.data.accessToken);
             }
             commit('SET_USER_TOKEN', response.data.accessToken);
         })
@@ -32,7 +32,7 @@ export const actions = {
         })
         .then((response) => {
             if(process.browser){
-                localStorage.setItem("access_token", response.data.accessToken);
+                localStorage.setItem("access_token_fitfood", response.data.accessToken);
             }
             commit('SET_USER_TOKEN', response.data.accessToken);
         })

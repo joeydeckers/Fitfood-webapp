@@ -1,0 +1,16 @@
+{
+    "version": 3,
+    "mappings": "AEAA,AACI,YADQ,CACR,GAAG,CAAA;EACC,KAAK,EAAE,IAAI;CACd;;AGHL,AACI,OADG,CACH,GAAG,CAAA;EACC,KAAK,EAAE,IAAI;CACd",
+    "sources": [
+        "main.scss",
+        "components/_components.scss",
+        "components/_recipesCard.scss",
+        "components/recipe/_recipe.scss",
+        "components/recipe/_recipeComment.scss",
+        "components/recipe/_recipeitem.scss",
+        "components/recipe/_recipeOwner.scss",
+        "pages/_pages.scss"
+    ],
+    "names": [],
+    "file": "main.css"
+}

@@ -9,7 +9,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "test": "jest"
+    "test": "ava"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -19,8 +19,15 @@
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.27",
+    "ava": "^3.7.0",
     "babel-jest": "^24.1.0",
     "jest": "^24.1.0",
+    "jsdom": "^16.2.2",
     "vue-jest": "^4.0.0-0"
+  },
+  "ava": {
+    "files": [
+      "test/**/*"
+    ]
   }
 }

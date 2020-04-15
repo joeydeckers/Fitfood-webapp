@@ -12,7 +12,7 @@
         :protein="getRecipe.recipe.protein"
         :carbs="getRecipe.recipe.carbs"
         :fats="getRecipe.recipe.fats"
-        :rating="getRecipe.recipe.rating"
+        :rating="getRecipe.rating"
       />
       <RecipeComments 
         :comments="getRecipe.comments"

@@ -11,8 +11,6 @@
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
             <b-nav-item href="#"><n-link to="/recipes" no-prefetch>Recipes</n-link></b-nav-item>
-            <b-nav-item href="#" disabled>Disabled</b-nav-item>
-            <b-nav-item href="#" disabled>Disabled</b-nav-item>
         </b-nav-form>
 
       </b-navbar-nav>

@@ -16,18 +16,16 @@ import { mapGetters, mapActions } from 'vuex';
 import RecipeCard from '~/components/RecipeCard'
 
 export default {
-    methods:{
-        getAllRecipesFromStore(){
-            this.$store.dispatch('recipes/getRecipes')
-        }
-    },
     created(){
-       this.getAllRecipesFromStore();
+       this.$store.dispatch('recipes/getRecipes')
     },
     computed:{
      ...mapGetters({
         getRecipes: 'recipes/getRecipesFromStore'
       }),
+    },
+    async fetch() {
+        await this.$store.dispatch('recipes/getRecipes')
     },
     components:{
         RecipeCard

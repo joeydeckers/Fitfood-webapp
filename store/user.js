@@ -1,5 +1,5 @@
 import axios from 'axios'
-// import router from './../../router'
+let apiRoute = "https://fitfood-api.herokuapp.com/api";
 
 export const state = {
     access_token:  '',
@@ -12,7 +12,7 @@ export const getters = {
 
 export const actions = {
     login({commit}, user){
-        axios.post('http://127.0.0.1:8000/api/user/login', {
+        axios.post(`${apiRoute}/user/login`, {
             email: user.email,
             password: user.password
         })
@@ -24,7 +24,7 @@ export const actions = {
         })
     },
     register({commit}, user){
-        axios.post('http://127.0.0.1:8000/api/user/register', {
+        axios.post(`${apiRoute}/api/user/register`, {
             email: user.email,
             password: user.password,
             password_confirmation : user.password_confirmation,

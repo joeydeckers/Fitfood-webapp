@@ -1,5 +1,5 @@
 import axios from 'axios'
-let apiRoute = "http://127.0.0.1:8000/api";
+let apiRoute = "https://fitfood-api.herokuapp.com/api";
 
 export const state = {
     recipes:  '',

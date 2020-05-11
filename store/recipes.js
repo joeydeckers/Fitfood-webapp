@@ -24,8 +24,8 @@ export const actions = {
             commit('SET_RECIPES', response.data)
         })
     },
-    getRecipe({commit}, id){
-        axios.get(`${apiRoute}/recipe/${id}`, {
+    async getRecipe({commit}, id){
+        await axios.get(`${apiRoute}/recipe/${id}`, {
 
         })
         .then((response) => {

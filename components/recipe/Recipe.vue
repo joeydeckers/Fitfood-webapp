@@ -1,6 +1,6 @@
 <template>
   <div class="recipe">
-      <h2>{{this.name}}</h2>
+      <h2>{{name}}</h2>
       <img :src="photo_path">
   </div>
 </template>

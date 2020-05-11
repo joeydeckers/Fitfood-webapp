@@ -14,12 +14,12 @@
         :fats="getRecipe.recipe.fats"
         :rating="getRecipe.rating"
       />
-      <RecipeComments 
+      <!-- <RecipeComments 
         :comments="getRecipe.comments"
-      />
-      <RecipeOwner
+      /> -->
+      <!-- <RecipeOwner
         :owner="getRecipe.user"
-      />
+      /> -->
     </div>  
 </template>
 
@@ -31,15 +31,6 @@ import RecipeOwner from '@/components/recipe/RecipeOwner'
 
 export default {
     layout:'default',
-    methods:{
-        getRecipeById(){
-            this.$store.dispatch('recipes/getRecipe', this.$route.params.id)
-            console.log(this.getRecipe);
-        }
-    },
-    created(){
-        this.getRecipeById();
-    },
     computed:{
      ...mapGetters({
         getRecipe: 'recipes/getRecipeFromStore'
@@ -49,6 +40,10 @@ export default {
         Recipe,
         RecipeComments,
         RecipeOwner
-    }
+    },
+    async fetch() {
+      await this.$store.dispatch('recipes/getRecipe', this.$route.params.id)
+    },
+    fetchOnServer: true
 }
 </script>

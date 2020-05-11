@@ -16,9 +16,6 @@ import { mapGetters, mapActions } from 'vuex';
 import RecipeCard from '~/components/RecipeCard'
 
 export default {
-    created(){
-       this.$store.dispatch('recipes/getRecipes')
-    },
     computed:{
      ...mapGetters({
         getRecipes: 'recipes/getRecipesFromStore'

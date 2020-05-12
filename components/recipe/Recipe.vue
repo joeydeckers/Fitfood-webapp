@@ -2,6 +2,7 @@
   <div class="recipe">
       <h2>{{name}}</h2>
       <img :src="photo_path">
+      <p>{{description}}</p>
   </div>
 </template>
 

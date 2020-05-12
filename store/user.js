@@ -24,7 +24,7 @@ export const actions = {
         })
     },
     register({commit}, user){
-        axios.post(`${apiRoute}/api/user/register`, {
+        axios.post(`${apiRoute}/user/register`, {
             email: user.email,
             password: user.password,
             password_confirmation : user.password_confirmation,

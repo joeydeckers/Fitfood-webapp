@@ -1,6 +1,6 @@
 <template>
   <div class="recipe-owner">
-      <h3>{{owner.name}}</h3>
+      <nuxt-link :to="{name: 'account-id', params:{id: owner.id}}"><p>Recipe created by: {{owner.name}}</p></nuxt-link>
   </div>
 </template>
 

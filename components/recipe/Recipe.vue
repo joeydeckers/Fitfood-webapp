@@ -2,6 +2,13 @@
   <div class="recipe">
       <h2>{{name}}</h2>
       <img :src="photo_path">
+      <p>Daytime: {{category_time}}</p>
+      <p>Calories: {{calories}}</p>
+      <p>Protein: {{protein}}</p>
+      <p>Carbs: {{carbs}}</p>
+      <p>Fats: {{fats}}</p>
+      <p>Rating: {{rating}}</p>
+      <p><strong>About {{name}}</strong></p>
       <p>{{description}}</p>
   </div>
 </template>

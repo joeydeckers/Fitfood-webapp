@@ -17,9 +17,10 @@
       <!-- <RecipeComments 
         :comments="getRecipe.comments"
       /> -->
-      <!-- <RecipeOwner
+      <RecipeOwner
         :owner="getRecipe.user"
-      /> -->
+      />
+      <nuxt-link to="/" v-if="getRecipe.recipe.owner_id == user.id">Bijwerken</nuxt-link>
     </div>  
 </template>
 
@@ -33,7 +34,8 @@ export default {
     layout:'default',
     computed:{
      ...mapGetters({
-        getRecipe: 'recipes/getRecipeFromStore'
+        getRecipe: 'recipes/getRecipeFromStore',
+        user: "user/getCurrentUser"
       }),
     },
     components:{

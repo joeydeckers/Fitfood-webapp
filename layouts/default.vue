@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Navbar/>
     <b-container>
+      <Navbar/>
       <nuxt />
     </b-container>
   </div>
@@ -13,6 +13,9 @@ import Navbar from '@/components/Navbar.vue'
 export default {
   components:{
     Navbar
+  },
+  created(){
+    this.$store.dispatch('user/setToken');
   }
 }
 </script>

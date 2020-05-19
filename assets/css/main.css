@@ -5,4 +5,25 @@
 .recipe img {
   width: 100%;
 }
+
+.navbar {
+  background: transparent !important;
+  padding: 10px 0 10px 0;
+}
+
+.navbar .navbar-brand {
+  color: #000;
+}
+
+.container {
+  max-width: 1400px;
+}
+
+.container a {
+  color: #000;
+}
+
+.container a:hover {
+  text-decoration: none;
+}
 /*# sourceMappingURL=main.css.map */

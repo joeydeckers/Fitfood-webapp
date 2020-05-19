@@ -23,6 +23,7 @@
 import { mapActions } from "vuex";  
 
 export default {
+  layout:'default',
   data() {
     return {
       email: "",
@@ -30,7 +31,6 @@ export default {
     };
   },
   methods: {
-    // ...mapActions(["login"]),
     loginUser() {
     let user = {
         email: this.email,

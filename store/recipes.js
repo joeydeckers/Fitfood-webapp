@@ -3,7 +3,8 @@ let apiRoute = "https://fitfood-api.herokuapp.com/api";
 
 export const state = {
     recipes:  '',
-    recipe: ''
+    recipe: '',
+    userRecipes: ''
 };
 
 export const getters = {
@@ -13,6 +14,9 @@ export const getters = {
     getRecipeFromStore:(state) =>{
         return state.recipe;
     },
+    getUserRecipesFromStore:(state) =>{
+        return state.userRecipes;
+    }
 };
 
 export const actions = {
@@ -30,6 +34,12 @@ export const actions = {
         })
         .then((response) => {
             commit('SET_RECIPE', response.data)
+        })
+    },
+    async getUserRecipes({commit}, id){
+        await axios.get(`${apiRoute}/user/recipes/${id}`)
+        .then((response) =>{
+            commit('SET_USER_RECIPES', response.data);
         })
     },
     createRecipe({commit}, recipe){
@@ -61,6 +71,9 @@ export const mutations = {
     },
     SET_RECIPE(state, recipe){
         state.recipe = recipe;
+    },
+    SET_USER_RECIPES(state, recipes){
+        state.userRecipes = recipes;
     }
 };
 

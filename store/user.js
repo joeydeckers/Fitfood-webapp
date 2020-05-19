@@ -6,8 +6,9 @@ export const state = {
 };
 
 export const getters = {
-
-    
+    getAccess_token: (state) =>{
+        return state.access_token;
+    }
 };
 
 export const actions = {
@@ -36,6 +37,13 @@ export const actions = {
             }
             commit('SET_USER_TOKEN', response.data.accessToken);
         })
+    },
+    setToken({commit}){
+        let token = '';
+        if(process.browser){
+            token = localStorage.getItem("access_token_fitfood");
+        }
+        commit('SET_USER_TOKEN', token);
     }
 };
 
@@ -44,10 +52,3 @@ export const mutations = {
         state.access_token = token;
     }
 };
-
-// export default {
-//     state,
-//     getters,
-//     actions,
-//     mutations
-// }

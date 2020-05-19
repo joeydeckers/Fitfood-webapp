@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1 class="red">Hello world!</h1>
     <b-container>
       <b-row>
         <b-col lg="4" class="mx-auto">
@@ -30,6 +29,7 @@
 import { mapActions } from "vuex";  
 
 export default {
+  layout:'default',
   data() {
     return {
       name: "",  
@@ -51,9 +51,3 @@ export default {
   }
 };
 </script>
-
-<style>
-  .red{
-    color: red;
-  }
-</style>

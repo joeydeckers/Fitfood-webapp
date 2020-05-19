@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h4>Welkom {{user.name}}</h4>
     <b-row>
         <b-col lg="3" v-for="recipe in recipes" :key="recipe.id">
         <nuxt-link :to="{ name: 'recipe-id', params: { id: recipe.id }}">
@@ -24,7 +25,8 @@ export default {
   layout: "default",
   fetchOnServer: true,
   computed: mapGetters({
-    recipes: "recipes/getUserRecipesFromStore"
+    recipes: "recipes/getUserRecipesFromStore",
+    user: "user/getCurrentUser"
   })
 };
 </script>

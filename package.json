@@ -9,7 +9,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "test": "ava"
+    "test": "cypress run"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -22,6 +22,7 @@
     "@vue/test-utils": "^1.0.0-beta.27",
     "ava": "^3.7.0",
     "babel-jest": "^24.1.0",
+    "cypress": "^4.6.0",
     "jest": "^24.1.0",
     "jsdom": "^16.2.2",
     "vue-jest": "^4.0.0-0"

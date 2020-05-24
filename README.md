@@ -2,6 +2,13 @@
 
 > Fitfood webapp written in Nuxt.js
 
+## Testing
+
+```bash
+cypress open # Opens the cypress UI
+cypress run || npm run test # Runs cypress tests without UI
+```
+
 ## Build Setup
 
 ```bash
@@ -18,5 +25,3 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

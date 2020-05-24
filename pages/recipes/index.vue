@@ -36,6 +36,11 @@ export default {
         RecipeCard,
         RecipeFilter
     },
+    watch:{
+        $route(to, from){
+            this.$store.dispatch('recipes/getRecipes')
+        }
+    }, 
     layout:'default',
     fetchOnServer: true
 }

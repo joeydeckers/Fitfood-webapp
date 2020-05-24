@@ -1,5 +1,31 @@
+.recipe-card {
+  margin-top: 80px;
+}
+
 .recipe-card img {
   width: 100%;
+  height: 500px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 15px;
+}
+
+.recipe-card h3 {
+  position: relative;
+  top: -70px;
+  left: 20px;
+  color: #fff;
+}
+
+#recipe-filter {
+  position: absolute;
+  width: 600px;
+  right: 0;
+}
+
+#recipe-filter input {
+  display: inline-block;
+  width: 100px;
 }
 
 .recipe img {
@@ -16,6 +42,14 @@
 
 .navbar .navbar-brand {
   color: #000;
+}
+
+#recipes button {
+  float: right;
+}
+
+#recipes h2 {
+  float: left;
 }
 
 .container {

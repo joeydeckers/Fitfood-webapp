@@ -1,19 +1,27 @@
 <template>
-    <b-row>
-        <b-col lg="3" v-for="recipe in getRecipes" :key="recipe.id">
-            <nuxt-link :to="{ name: 'recipe-id', params: { id: recipe.id }}">
-                <RecipeCard
-                    :name="recipe.name"
-                    :photo_path="recipe.photo_path"
-                />
-            </nuxt-link>
-        </b-col>
-    </b-row>
+    <div id="recipes">
+        <div>
+            <h2>All recipes</h2>
+            <b-button variant="primary">Filter</b-button>
+            <RecipeFilter/>
+        </div>
+        <b-row>
+            <b-col lg="3" v-for="recipe in getRecipes" :key="recipe.id">
+                <nuxt-link :to="{ name: 'recipe-id', params: { id: recipe.id }}">
+                    <RecipeCard
+                        :name="recipe.name"
+                        :photo_path="recipe.photo_path"
+                    />
+                </nuxt-link>
+            </b-col>
+        </b-row>
+    </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import RecipeCard from '~/components/RecipeCard'
+import RecipeFilter from '~/components/RecipeFilter'
 
 export default {
     computed:{
@@ -25,7 +33,8 @@ export default {
         await this.$store.dispatch('recipes/getRecipes')
     },
     components:{
-        RecipeCard
+        RecipeCard,
+        RecipeFilter
     },
     layout:'default',
     fetchOnServer: true

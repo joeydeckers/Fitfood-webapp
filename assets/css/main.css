@@ -19,13 +19,22 @@
 
 #recipe-filter {
   position: absolute;
+  top: 150px;
   width: 600px;
-  right: 0;
+  right: 155px;
+  padding: 15px;
+  background: #dadada;
+  border-radius: 10px;
+  z-index: 99;
 }
 
 #recipe-filter input {
   display: inline-block;
   width: 100px;
+}
+
+#recipe-filter button {
+  float: none !important;
 }
 
 .recipe img {

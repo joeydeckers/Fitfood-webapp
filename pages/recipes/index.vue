@@ -2,8 +2,8 @@
     <div id="recipes">
         <div>
             <h2>All recipes</h2>
-            <b-button variant="primary">Filter</b-button>
-            <RecipeFilter/>
+            <b-button @click='toggleFilter' variant="primary">Filter</b-button>
+            <RecipeFilter v-if="showFilter"/>
         </div>
         <b-row>
             <b-col lg="3" v-for="recipe in getRecipes" :key="recipe.id">
@@ -24,6 +24,16 @@ import RecipeCard from '~/components/RecipeCard'
 import RecipeFilter from '~/components/RecipeFilter'
 
 export default {
+    data(){
+        return{
+            showFilter: false
+        }
+    },
+    methods:{
+        toggleFilter(){
+            this.showFilter = !this.showFilter
+        }
+    },
     computed:{
      ...mapGetters({
         getRecipes: 'recipes/getRecipesFromStore'
@@ -38,7 +48,14 @@ export default {
     },
     watch:{
         $route(to, from){
-            this.$store.dispatch('recipes/getRecipes')
+            this.$store.dispatch('recipes/getRecipes');
+            this.$store.dispatch('recipes/filterRecipe', {
+                carbs: to.query.carbs,
+                fats: to.query.fats,
+                calories: to.query.calories,
+                protein: to.query.protein
+            })
+            console.log(to);
         }
     }, 
     layout:'default',

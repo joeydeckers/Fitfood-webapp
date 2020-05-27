@@ -33,16 +33,19 @@
 
                     </b-form-select>
                     
-                    <b-form-file
+                    <!-- <b-form-file
                         v-if="recipeItem.item == 'file'"
                         v-model="recipeItem.model"
                         @change="onFileChange"
                        :placeholder="recipeItem.placeholder"
                         drop-placeholder="Drop file here..."
                         ref="file"
-                    ></b-form-file>
+                    ></b-form-file> -->
+
 
                 </b-form-group>
+                <p>Select photo</p>
+                <input  ref="photo" type="file">
                 <button type="submit">test</button>
             </b-form>
           </b-col>
@@ -111,13 +114,13 @@ export default {
                         'Snack'
                     ]
                 },
-                {
-                    model: null,
-                    type: 'file',
-                    placeholder: 'Photo',
-                    label: 'Give photo',
-                    item: 'file',
-                },
+                // {
+                //     model: null,
+                //     type: 'file',
+                //     placeholder: 'Photo',
+                //     label: 'Give photo',
+                //     item: 'file',
+                // },
                 {
                     model: '',
                     type: 'text',
@@ -147,36 +150,39 @@ export default {
                     item: 'input',
                 },
             ],
-            file: ''
+            photo: ''
         }
     },
     methods:{
-        onFileChange(e){
-            console.log(e.target.files[0]);
-            this.file = e.target.files[0];
-        },
         createRecipeByInput(recipe){
-            let formData = new FormData();
-            formData.append('file', this.file);
-
-            let recipeToBuild ={
-                name: recipe[0].model,
-                description: recipe[1].model, 
-                wheat_allergy: recipe[2].model, 
-                milk_allergy: recipe[3].model, 
-                allergies_list: recipe[4].model, 
-                owner_id: 1,
-                votes_id: 1,
-                comments_id: 1,
-                category_time: recipe[5].model, 
-                recipe_photo: formData,
-                protein: recipe[7].model, 
-                carbs: recipe[8].model, 
-                fats: recipe[9].model, 
-                calories: recipe[10].model, 
-            }
-            this.$store.dispatch('recipes/createRecipe', recipeToBuild)
+            this.photo = this.$refs.photo.files[0];
+            let photo = '';
+            var reader = new FileReader();
+            reader.readAsDataURL(this.photo);
+            reader.onload = function () {
+                photo = reader.result;
+            };
+            setTimeout(() => {
+                let recipeToBuild ={
+                    name: recipe[0].model,
+                    description: recipe[1].model, 
+                    wheat_allergy: recipe[2].model, 
+                    milk_allergy: recipe[3].model, 
+                    allergies_list: recipe[4].model, 
+                    owner_id: 1,
+                    votes_id: 1,
+                    comments_id: 1,
+                    category_time: recipe[5].model, 
+                    recipe_photo: photo,
+                    protein: recipe[6].model, 
+                    carbs: recipe[7].model, 
+                    fats: recipe[8].model, 
+                    calories: recipe[9].model, 
+                } 
             console.log(recipeToBuild);
+            this.$store.dispatch('recipes/createRecipe', recipeToBuild)
+            }, 500);
+
         }
     },
     layout:'default',

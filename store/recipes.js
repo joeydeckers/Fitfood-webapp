@@ -42,7 +42,35 @@ export const actions = {
             commit('SET_USER_RECIPES', response.data);
         })
     },
+    // createRecipe({commit}, recipe){
+    //     axios.post(`${apiRoute}/recipe/create`, {
+    //         name: recipe.name,
+    //         description: recipe.description,
+    //         wheat_allergy: recipe.wheat_allergy,
+    //         milk_allergy: recipe.milk_allergy,
+    //         allergies_list: recipe.allergies_list,
+    //         owner_id: recipe.owner_id,
+    //         votes_id: recipe.votes_id,
+    //         comments_id: recipe.comments_id,
+    //         category_time: recipe.category_time,
+    //         recipe_photo: recipe.recipe_photo,
+    //         protein: recipe.protein,
+    //         carbs: recipe.carbs,
+    //         fats: recipe.fats,
+    //         calories: recipe.calories,
+    //     })
+    //     .then((response) =>{
+    //         commit('SET_RECIPE', response.data)
+    //     })
+    // },
     createRecipe({commit}, recipe){
+        if(recipe.wheat_allergy == 'true'){
+            recipe.wheat_allergy = 1;
+        }
+
+        if(recipe.milk_allergy == 'true'){
+            recipe.milk_allergy = 1;
+        }
         axios.post(`${apiRoute}/recipe/create`, {
             name: recipe.name,
             description: recipe.description,
@@ -62,6 +90,17 @@ export const actions = {
         .then((response) =>{
             commit('SET_RECIPE', response.data)
         })
+    },
+    async filterRecipe({commit}, filter){
+        await axios.post(`${apiRoute}/recipe/filter`,{
+            carbs: filter.carbs,
+            fats: filter.fats,
+            calories: filter.calories,
+            protein: filter.protein
+        })
+        .then((response => {
+            commit('SET_RECIPES', response.data)
+        }))
     }
 };
 

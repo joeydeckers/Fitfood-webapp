@@ -23,6 +23,7 @@
     "ava": "^3.7.0",
     "babel-jest": "^24.1.0",
     "cypress": "^4.6.0",
+    "cypress-file-upload": "^4.0.7",
     "jest": "^24.1.0",
     "jsdom": "^16.2.2",
     "vue-jest": "^4.0.0-0"

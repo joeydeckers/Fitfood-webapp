@@ -101,6 +101,22 @@ export const actions = {
         .then((response => {
             commit('SET_RECIPES', response.data)
         }))
+    },
+    async deleteRecipe({commit}, id){
+        if(process.browser){
+            await axios.delete(`${apiRoute}/recipe/${id}`, {
+                headers:{
+                    Authorization: 'Bearer ' + localStorage.getItem('access_token_fitfood')
+                }
+            })
+            .then((response)=>{
+                alert("delete")
+                commit('SET_RECIPE', response.data);
+            })
+            .catch((error)=>{
+                alert(error);
+            })
+        }
     }
 };
 

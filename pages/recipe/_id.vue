@@ -21,6 +21,7 @@
         :owner="getRecipe.user"
       />
       <nuxt-link to="/" v-if="getRecipe.recipe.owner_id == user.id">Bijwerken</nuxt-link>
+      <b-button @click="deleteRecipe" variant="danger" v-if="getRecipe.recipe.owner_id == user.id">Verwijderen</b-button>
     </div>  
 </template>
 
@@ -42,6 +43,11 @@ export default {
         Recipe,
         RecipeComments,
         RecipeOwner
+    },
+    methods:{
+      deleteRecipe(){
+        this.$store.dispatch('recipes/deleteRecipe', this.$route.params.id)
+      }
     },
     async fetch() {
       await this.$store.dispatch('recipes/getRecipe', this.$route.params.id)

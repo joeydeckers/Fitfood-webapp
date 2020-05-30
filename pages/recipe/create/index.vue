@@ -13,6 +13,7 @@
                         :type="recipeItem.type"
                         required
                         :placeholder="recipeItem.placeholder"
+                        :data-type="recipeItem.datatype"
                     ></b-form-input>
                     
                     <b-form-textarea
@@ -21,6 +22,7 @@
                         :type="recipeItem.type"
                         required
                         :placeholder="recipeItem.placeholder"
+                        :data-type="recipeItem.datatype"
                     >
                     </b-form-textarea>
 
@@ -29,6 +31,7 @@
                         v-model="recipeItem.model" 
                         :options="recipeItem.options"
                         :placeholder="recipeItem.placeholder"
+                        :data-type="recipeItem.datatype"
                     >
 
                     </b-form-select>
@@ -45,7 +48,7 @@
 
                 </b-form-group>
                 <p>Select photo</p>
-                <input  ref="photo" type="file">
+                <input data-type="photo" ref="photo" type="file">
                 <button type="submit">test</button>
             </b-form>
           </b-col>
@@ -63,14 +66,16 @@ export default {
                     type: 'text',
                     placeholder: 'Enter recipe name',
                     label: 'Recipe name',
-                    item: 'input'
+                    item: 'input',
+                    datatype: 'name'
                 },
                 {
                     model: '',
                     type: 'text',
                     placeholder: 'Enter recipe description',
                     label: 'Recipe description',
-                    item: 'description'
+                    item: 'description',
+                    datatype: 'description'
                 },
                 {
                     model: '',
@@ -78,6 +83,7 @@ export default {
                     placeholder: 'Give wheat allergy',
                     label: 'Give wheat allergy',
                     item: 'select',
+                    datatype: 'wheat-allergy',
                     options:[
                         'true',
                         'false'
@@ -89,6 +95,7 @@ export default {
                     placeholder: 'Give wheat milk allergy',
                     label: 'Give milk allergy',
                     item: 'select',
+                    datatype: 'milk-allergy',
                     options:[
                         'true',
                         'false'
@@ -100,6 +107,7 @@ export default {
                     placeholder: 'Give allgery description',
                     label: 'Give allgery description',
                     item: 'description',
+                    datatype: 'allergydescripion',
                 },
                 {
                     model: '',
@@ -107,6 +115,7 @@ export default {
                     placeholder: 'Daytime',
                     label: 'Daytime',
                     item: 'select',
+                    datatype: 'daytime',
                     options:[
                         'Noon',
                         'Afternoon',
@@ -126,6 +135,7 @@ export default {
                     type: 'text',
                     placeholder: 'Give protein',
                     label: 'Give protein',
+                    datatype: 'protein',
                     item: 'input',
                 },
                 {
@@ -133,6 +143,7 @@ export default {
                     type: 'text',
                     placeholder: 'Give carbs',
                     label: 'Give carbs',
+                    datatype: 'carbs',
                     item: 'input',
                 },
                 {
@@ -140,6 +151,7 @@ export default {
                     type: 'text',
                     placeholder: 'Give fats',
                     label: 'Give fats',
+                    datatype: 'fats',
                     item: 'input',
                 },
                 {
@@ -147,6 +159,7 @@ export default {
                     type: 'text',
                     placeholder: 'Give calories',
                     label: 'Give calories',
+                    datatype: 'calories',
                     item: 'input',
                 },
             ],

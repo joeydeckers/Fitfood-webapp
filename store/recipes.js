@@ -42,28 +42,7 @@ export const actions = {
             commit('SET_USER_RECIPES', response.data);
         })
     },
-    // createRecipe({commit}, recipe){
-    //     axios.post(`${apiRoute}/recipe/create`, {
-    //         name: recipe.name,
-    //         description: recipe.description,
-    //         wheat_allergy: recipe.wheat_allergy,
-    //         milk_allergy: recipe.milk_allergy,
-    //         allergies_list: recipe.allergies_list,
-    //         owner_id: recipe.owner_id,
-    //         votes_id: recipe.votes_id,
-    //         comments_id: recipe.comments_id,
-    //         category_time: recipe.category_time,
-    //         recipe_photo: recipe.recipe_photo,
-    //         protein: recipe.protein,
-    //         carbs: recipe.carbs,
-    //         fats: recipe.fats,
-    //         calories: recipe.calories,
-    //     })
-    //     .then((response) =>{
-    //         commit('SET_RECIPE', response.data)
-    //     })
-    // },
-    createRecipe({commit}, recipe){
+    createRecipe({commit}, {vm, recipe}){
         if(recipe.wheat_allergy == 'true'){
             recipe.wheat_allergy = 1;
         }
@@ -88,6 +67,14 @@ export const actions = {
             calories: recipe.calories,
         })
         .then((response) =>{
+            vm.$bvToast.toast('Recipe created', {
+                title: 'Recipe created!',
+                autoHideDelay: 5000,
+                variant: 'success'
+            })
+            setTimeout(() => {
+                this.$router.push({name:'recipes'})
+            }, 2000);
             commit('SET_RECIPE', response.data)
         })
     },
@@ -102,7 +89,7 @@ export const actions = {
             commit('SET_RECIPES', response.data)
         }))
     },
-    async deleteRecipe({commit}, id){
+    async deleteRecipe({commit}, {vm, id}){
         if(process.browser){
             await axios.delete(`${apiRoute}/recipe/${id}`, {
                 headers:{
@@ -110,8 +97,15 @@ export const actions = {
                 }
             })
             .then((response)=>{
-                alert("delete")
-                commit('SET_RECIPE', response.data);
+                vm.$bvToast.toast(`${response.data.Message}`, {
+                    title: 'Recipe deleted!',
+                    autoHideDelay: 5000,
+                    variant: 'success'
+                })
+                setTimeout(() => {
+                    this.$router.push({name:'recipes'})
+                }, 2000);
+               
             })
             .catch((error)=>{
                 alert(error);

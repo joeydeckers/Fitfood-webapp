@@ -35,7 +35,16 @@
                     >
 
                     </b-form-select>
-            
+                    
+                    <!-- <b-form-file
+                        v-if="recipeItem.item == 'file'"
+                        v-model="recipeItem.model"
+                        @change="onFileChange"
+                       :placeholder="recipeItem.placeholder"
+                        drop-placeholder="Drop file here..."
+                        ref="file"
+                    ></b-form-file> -->
+
 
                 </b-form-group>
                 <p>Select photo</p>
@@ -44,11 +53,14 @@
             </b-form>
           </b-col>
       </b-row>
+      {{getRecipe.recipe}}
   </div>
 </template>
 
 <script>
 import { required, minLength } from 'vuelidate/lib/validators'
+import { mapGetters } from 'vuex';
+
 export default {
     
     data(){
@@ -152,6 +164,14 @@ export default {
             photo: ''
         }
     },
+    created(){
+        this.$store.dispatch('recipes/getRecipe', this.$route.params.id);
+        setTimeout(() => {
+            let recipe = this.getRecipe.recipe;
+            console.log(recipe);
+        }, 500);
+
+    },
     methods:{
         createRecipeByInput(recipe){
             this.photo = this.$refs.photo.files[0];
@@ -181,6 +201,12 @@ export default {
             this.$store.dispatch('recipes/createRecipe', {vm:this, recipe:recipeToBuild})
             }, 500);
         }
+    },
+    computed:{
+        ...mapGetters({
+            getRecipe: 'recipes/getRecipeFromStore',
+            user: "user/getCurrentUser"
+        }),
     },
     layout:'default',
 }

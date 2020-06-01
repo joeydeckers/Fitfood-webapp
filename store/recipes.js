@@ -120,9 +120,9 @@ export const actions = {
                     variant: 'success'
                 })
                 setTimeout(() => {
-                   // this.$router.push({name:'recipes'})
+                   this.$router.push({name:'recipes'})
                 }, 2000);
-                //commit('SET_RECIPE', response.data)
+                commit('SET_RECIPE', response.data)
             })
         }else{
             await axios({
@@ -157,9 +157,9 @@ export const actions = {
                     variant: 'success'
                 })
                 setTimeout(() => {
-                   // this.$router.push({name:'recipes'})
+                    this.$router.push({name:'recipes'})
                 }, 2000);
-                //commit('SET_RECIPE', response.data)
+                commit('SET_RECIPE', response.data)
             })
         }
 

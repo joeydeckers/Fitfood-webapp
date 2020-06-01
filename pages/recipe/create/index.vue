@@ -49,6 +49,7 @@
 
 <script>
 import { required, minLength } from 'vuelidate/lib/validators'
+import { mapGetters } from 'vuex'
 export default {
     
     data(){
@@ -168,7 +169,7 @@ export default {
                     wheat_allergy: recipe[2].model, 
                     milk_allergy: recipe[3].model, 
                     allergies_list: recipe[4].model, 
-                    owner_id: this.$store.getters.getCurrentUser.id,
+                    owner_id: this.user.id,
                     votes_id: 1,
                     comments_id: 1,
                     category_time: recipe[5].model, 
@@ -181,6 +182,11 @@ export default {
             this.$store.dispatch('recipes/createRecipe', {vm:this, recipe:recipeToBuild})
             }, 500);
         }
+    },
+    computed:{
+        ...mapGetters({
+            user: "user/getCurrentUser"
+        }),
     },
     layout:'default',
 }

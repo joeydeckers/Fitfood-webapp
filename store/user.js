@@ -3,7 +3,8 @@ let apiRoute = "https://fitfood-api.herokuapp.com/api";
 
 export const state = {
     access_token:  '',
-    user: ''
+    user: '',
+    searchedUser: ''
 };
 
 export const getters = {
@@ -12,6 +13,9 @@ export const getters = {
     },
     getCurrentUser: (state) =>{
         return state.user;
+    },
+    getsearchedUser: (state) =>{
+        return state.searchedUser;
     }
 };
 
@@ -60,6 +64,18 @@ export const actions = {
                 commit('SET_USER', response.data);
             })
         }
+    },
+    async getSpeceficUser({commit}, id){
+        if(process.browser){
+            await axios.get(`${apiRoute}/user/${id}`, {
+                headers:{
+                    Authorization: 'Bearer ' + localStorage.getItem('access_token_fitfood')
+                }
+            })
+            .then((response)=>{
+                commit('SET_SEARCHED_USER', response.data);
+            })
+        }
     }
 };
 
@@ -69,5 +85,8 @@ export const mutations = {
     },
     SET_USER(state, user){
         state.user = user;
+    },
+    SET_SEARCHED_USER(state, user){
+        state.searchedUser = user;
     }
 };

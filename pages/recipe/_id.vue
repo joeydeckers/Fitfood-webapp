@@ -14,16 +14,24 @@
         :fats="getRecipe.recipe.fats"
         :rating="getRecipe.rating"
       />
-      <!-- <RecipeComments 
+      <RecipeComments
+        v-if="getRecipe.comments" 
         :comments="getRecipe.comments"
-      /> -->
+      />
       <RecipeOwner
         :owner="getRecipe.user"
       />
-      <nuxt-link :to="{name: 'recipe-edit-id', params:{id:this.$route.params.id}}">
-        <b-button v-if="getRecipe.recipe.owner_id == user.id">Bijwerken</b-button>
-      </nuxt-link>
-      <b-button @click="deleteRecipe" variant="danger" v-if="getRecipe.recipe.owner_id == user.id">Verwijderen</b-button>
+      <div v-if="getRecipe.recipe.owner_id == user.id">
+        <nuxt-link  :to="{name: 'recipe-edit-id', params:{id:this.$route.params.id}}">
+          <b-button >Bijwerken</b-button>
+        </nuxt-link>
+        <b-button @click="deleteRecipe" variant="danger" v-if="getRecipe.recipe.owner_id == user.id">Delete</b-button>
+      </div>
+
+      <b-form @submit.prevent="comment" v-else>
+        <b-input data-type="comment" v-model="text" placeholder="Your comment"></b-input>
+        <b-button  type="submit" variant="danger">Comment</b-button>
+      </b-form>
     </div>  
 </template>
 
@@ -35,6 +43,11 @@ import RecipeOwner from '@/components/recipe/RecipeOwner'
 
 export default {
     layout:'default',
+    data(){
+      return{
+        text: ''
+      }
+    },
     computed:{
      ...mapGetters({
         getRecipe: 'recipes/getRecipeFromStore',
@@ -49,6 +62,16 @@ export default {
     methods:{
       deleteRecipe(){
         this.$store.dispatch('recipes/deleteRecipe', {vm:this, id:this.$route.params.id})
+      },
+      comment(){
+        this.$store.dispatch('comments/addComment', {
+          vm:this,
+          comment:{
+            recipe_id:this.$route.params.id,
+            owner_id: this.user.id,
+            comment_text: this.text
+          } 
+        })
       }
     },
     async fetch() {

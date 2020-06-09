@@ -23,7 +23,7 @@ export default {
     await this.$store.dispatch("recipes/getUserRecipes", this.$route.params.id);
   },
   layout: "default",
-  fetchOnServer: true,
+  //fetchOnServer: true,
   computed: mapGetters({
     recipes: "recipes/getUserRecipesFromStore",
     user: "user/getCurrentUser"

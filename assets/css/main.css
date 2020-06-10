@@ -68,6 +68,10 @@
   font-size: 60px;
 }
 
+#landing .featured-food {
+  margin-top: 120px;
+}
+
 .container {
   max-width: 1400px;
 }

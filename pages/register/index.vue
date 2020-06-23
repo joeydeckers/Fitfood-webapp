@@ -6,16 +6,30 @@
           <h2>Register</h2>
           <b-form @submit.prevent="registerUser">
             <b-form-group>
+              <!-- <p class="error" v-if="!$v.email.required  && submitStatus == 'ERROR'">Field is required</p> -->
               <b-input placeholder="email" v-model="email" type="text" data-type="email" />
             </b-form-group>
             <b-form-group>
+              <!-- <p class="error" v-if="!$v.name.required  && submitStatus == 'ERROR'">Field is required</p> -->
               <b-input placeholder="name" v-model="name" type="text" data-type="name" />
             </b-form-group>
             <b-form-group>
-              <b-input placeholder="password" v-model="password" type="password" data-type="password" />
+              <p class="error" v-if="submitStatus == 'ERROR'">Field is required</p>
+              <b-input
+                placeholder="password"
+                v-model="password"
+                type="password"
+                data-type="password"
+              />
             </b-form-group>
             <b-form-group>
-              <b-input placeholder="password" v-model="password_confirmation" type="password" data-type="password-repeat" />
+              <!-- <p class="error" v-if="!$v.password_confirmation.required  && submitStatus == 'ERROR'">Field is required</p> -->
+              <b-input
+                placeholder="password"
+                v-model="password_confirmation"
+                type="password"
+                data-type="password-repeat"
+              />
             </b-form-group>
             <b-button type="submit">Register</b-button>
           </b-form>
@@ -27,26 +41,54 @@
 
 <script>
 import { mapActions } from "vuex";
+import { required, minLength,  } from "vuelidate/lib/validators";
 
 export default {
-  layout:'default',
+  layout: "default",
   data() {
     return {
       name: "",
       email: "",
       password: "",
-      password_confirmation : ""
+      password_confirmation: "",
+      submitStatus: null
     };
   },
   methods: {
     registerUser() {
-    let user = {
-        email: this.email,
-        name: this.name,
-        password: this.password,
-        password_confirmation: this.password_confirmation
+      if (this.password == "") {
+        this.submitStatus = "ERROR";
+      } else {
+        let user = {
+          email: this.email,
+          name: this.name,
+          password: this.password,
+          password_confirmation: this.password_confirmation
+        };
+        this.$store.dispatch("user/register", user);
+        this.submitStatus = "PENDING";
+        setTimeout(() => {
+          this.submitStatus = "OK";
+        }, 500);
+      }
     }
-    this.$store.dispatch('user/register', user)
+  },
+  validations: {
+    name: {
+      required,
+      minLength: minLength(4)
+    },
+    email: {
+      required,
+      // email
+    },
+    password: {
+      required,
+      minLength: minLength(6)
+    },
+    password_confirmation: {
+      required,
+      minLength: minLength(6)
     }
   }
 };
